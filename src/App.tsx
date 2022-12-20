@@ -6,6 +6,7 @@ import "./App.css";
 import Home from "./components/Home/Home";
 import Movie from "./components/Movie/Movie";
 import Navigation from "./components/Navigation/Navigation";
+import SearchResults from "./components/SearchResults/SearchResults";
 import { Movie as MovieType } from "./components/types";
 
 function App() {
@@ -45,6 +46,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home data={movies} />} />
           <Route path="/movie/:id" element={<Movie data={movies} />} />
+          <Route path="/search/:query" element={<SearchResults />} />
         </Routes>
       )}
     </div>

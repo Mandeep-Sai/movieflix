@@ -1,0 +1,13 @@
+.results{
+    padding: 30px 15px !important;
+}
+.movies{
+    display: flex;
+}
+.movie{
+    text-align: center;
+    margin: 10px 20px;
+}
+.movie p{
+    margin-top: 10px;
+}
