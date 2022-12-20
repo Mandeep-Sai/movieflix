@@ -1,0 +1,12 @@
+.search_button{
+    border: none !important;
+    border-radius: 50% !important;
+    margin-right: 5px !important;
+}
+.form-control{
+    border-radius: 40px !important;
+    padding-left: 15px !important;
+}
+.form-control:focus{
+    border-color: transparent;
+}
