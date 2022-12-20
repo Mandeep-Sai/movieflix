@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Spinner } from "react-bootstrap";
+import Gallery from "../Gallery/Gallery";
 import { Movie } from "../types";
 
 const Home = (): JSX.Element => {
@@ -54,7 +55,13 @@ const Home = (): JSX.Element => {
           {movies.length > 0 ? (
             <>
               {categories.map((category, index) => {
-                return <h1 key={index}>{category}</h1>;
+                return (
+                  <Gallery
+                    key={index}
+                    category={category}
+                    movies={movies}
+                  ></Gallery>
+                );
               })}
             </>
           ) : (

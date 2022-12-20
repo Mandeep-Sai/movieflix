@@ -13,3 +13,8 @@ export interface Movie {
   slug: string;
   title: string;
 }
+
+export interface GalleryProps {
+  category: string;
+  movies: Movie[];
+}
