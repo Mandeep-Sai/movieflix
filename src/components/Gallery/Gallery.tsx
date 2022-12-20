@@ -3,9 +3,16 @@ import { GalleryProps, Movie } from "../types";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "./Gallery.css";
+import { useNavigate } from "react-router-dom";
 
 const Gallery = ({ category, movies }: GalleryProps): JSX.Element => {
   const [genreMovies, setGenreMovies] = useState<Movie[]>([]);
+
+  let navigate = useNavigate();
+  const routeChange = (id: string) => {
+    let path = `movie/${id}`;
+    navigate(path);
+  };
 
   useEffect(() => {
     const filteredMovies = movies.filter((movie) =>
@@ -41,9 +48,9 @@ const Gallery = ({ category, movies }: GalleryProps): JSX.Element => {
     <div className="gallery">
       <h3>{category}</h3>
       <Carousel responsive={responsive}>
-        {genreMovies.map((movie) => {
+        {genreMovies.map((movie, index) => {
           return (
-            <div>
+            <div key={index} onClick={() => routeChange(movie.id)}>
               <img
                 src={movie.poster}
                 style={{ height: "350px", width: "250px" }}

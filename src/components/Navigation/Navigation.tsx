@@ -7,7 +7,7 @@ const Navigation = (): JSX.Element => {
     <>
       <Navbar bg="dark" expand="lg" variant="dark">
         <Container fluid>
-          <Navbar.Brand href="#">WOOKIE MOVIES</Navbar.Brand>
+          <Navbar.Brand href="/">WOOKIE MOVIES</Navbar.Brand>
           <Form className="d-flex">
             <Button variant="outline-light" className="search_button">
               <Search />
