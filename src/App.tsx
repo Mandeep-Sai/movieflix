@@ -1,7 +1,7 @@
-import React from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Home from "./components/Home/Home";
+import Movie from "./components/Movie/Movie";
 import Navigation from "./components/Navigation/Navigation";
 
 function App() {
@@ -10,6 +10,7 @@ function App() {
       <Navigation></Navigation>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/movie/:id" element={<Movie />} />
       </Routes>
     </div>
   );
