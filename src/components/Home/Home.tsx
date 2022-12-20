@@ -4,21 +4,12 @@ import { Spinner } from "react-bootstrap";
 import Gallery from "../Gallery/Gallery";
 import { Movie } from "../types";
 
-const Home = (): JSX.Element => {
-  const [movies, setMovies] = useState<Movie[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [categories, setCategories] = useState<string[]>([]);
+interface HomeProps {
+  data: Movie[];
+}
 
-  const fetchMovies = async (url: string): Promise<Movie[]> => {
-    return await axios
-      .get(url, {
-        headers: {
-          Authorization: "Bearer Wookie2021",
-        },
-      })
-      .then((response) => response.data.movies)
-      .catch((error) => console.log(`Error : ${error}`));
-  };
+const Home = ({ data }: HomeProps): JSX.Element => {
+  const [categories, setCategories] = useState<string[]>([]);
 
   const getMoviesCategories = (movies: Movie[]) => {
     let categories: string[] = [];
@@ -33,41 +24,22 @@ const Home = (): JSX.Element => {
   };
 
   useEffect(() => {
-    setLoading(true);
-    fetchMovies("https://wookie.codesubmit.io/movies").then((movies) => {
-      if (movies) {
-        setMovies(movies);
-        getMoviesCategories(movies);
-      }
-      setLoading(false);
-    });
-  }, []);
+    if (data.length > 0) {
+      getMoviesCategories(data);
+    }
+  }, [data]);
   return (
     <>
-      {loading ? (
-        <Spinner
-          animation="border"
-          variant="dark"
-          style={{ position: "absolute", top: "50%", left: "50%" }}
-        />
-      ) : (
+      {data.length > 0 ? (
         <>
-          {movies.length > 0 ? (
-            <>
-              {categories.map((category, index) => {
-                return (
-                  <Gallery
-                    key={index}
-                    category={category}
-                    movies={movies}
-                  ></Gallery>
-                );
-              })}
-            </>
-          ) : (
-            <h1>No Movies</h1>
-          )}
+          {categories.map((category, index) => {
+            return (
+              <Gallery key={index} category={category} movies={data}></Gallery>
+            );
+          })}
         </>
+      ) : (
+        <h1>No Movies</h1>
       )}
     </>
   );

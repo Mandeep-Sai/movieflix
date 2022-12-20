@@ -1,7 +1,12 @@
-const Movie = (): JSX.Element => {
+import { Movie as MovieType } from "../types";
+
+interface MovieProps {
+  data: MovieType[];
+}
+const Movie = ({ data }: MovieProps): JSX.Element => {
   return (
     <>
-      <h1>Movie</h1>
+      <h1>{data.length}</h1>
     </>
   );
 };
