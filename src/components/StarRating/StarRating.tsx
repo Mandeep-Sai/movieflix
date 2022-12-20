@@ -6,7 +6,7 @@ interface StarProps {
   rating: number;
 }
 
-const StarRating = ({ rating }: StarProps) => {
+const StarRating = ({ rating }: StarProps): JSX.Element => {
   const [stars, setStars] = useState<number>(0);
 
   useEffect(() => {
