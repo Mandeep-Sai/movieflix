@@ -1,0 +1,21 @@
+.movie_container{
+    display: flex;
+    margin: 100px;
+
+}
+.info{
+    margin: 50px;
+}
+.date{
+    margin: 0px;
+}
+.title_container{
+    display: flex;
+    justify-content: space-between;
+}
+.title_container .title{
+    display: flex;
+}
+.title_container .title > *{
+    margin-right: 10px;
+}
