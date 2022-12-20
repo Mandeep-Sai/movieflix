@@ -1,9 +1,11 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { Spinner } from "react-bootstrap";
 import { Movie } from "../types";
 
 const Home = (): JSX.Element => {
   const [movies, setMovies] = useState<Movie[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
   const [categories, setCategories] = useState<string[]>([]);
 
   const fetchMovies = async (url: string): Promise<Movie[]> => {
@@ -30,16 +32,36 @@ const Home = (): JSX.Element => {
   };
 
   useEffect(() => {
+    setLoading(true);
     fetchMovies("https://wookie.codesubmit.io/movies").then((movies) => {
-      setMovies(movies);
-      getMoviesCategories(movies);
+      if (movies) {
+        setMovies(movies);
+        getMoviesCategories(movies);
+      }
+      setLoading(false);
     });
   }, []);
   return (
     <>
-      {categories.map((category, index) => {
-        return <h1 key={index}>{category}</h1>;
-      })}
+      {loading ? (
+        <Spinner
+          animation="border"
+          variant="dark"
+          style={{ position: "absolute", top: "50%", left: "50%" }}
+        />
+      ) : (
+        <>
+          {movies.length > 0 ? (
+            <>
+              {categories.map((category, index) => {
+                return <h1 key={index}>{category}</h1>;
+              })}
+            </>
+          ) : (
+            <h1>No Movies</h1>
+          )}
+        </>
+      )}
     </>
   );
 };
