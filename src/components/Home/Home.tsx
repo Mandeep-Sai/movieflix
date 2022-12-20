@@ -4,6 +4,7 @@ import { Movie } from "../types";
 
 const Home = (): JSX.Element => {
   const [movies, setMovies] = useState<Movie[]>([]);
+  const [categories, setCategories] = useState<string[]>([]);
 
   const fetchMovies = async (url: string): Promise<Movie[]> => {
     return await axios
@@ -16,14 +17,29 @@ const Home = (): JSX.Element => {
       .catch((error) => console.log(`Error : ${error}`));
   };
 
+  const getMoviesCategories = (movies: Movie[]) => {
+    let categories: string[] = [];
+    movies.forEach((m) => {
+      m.genres.forEach((genre) => {
+        if (!categories.includes(genre)) {
+          categories.push(genre);
+        }
+      });
+    });
+    setCategories(categories);
+  };
+
   useEffect(() => {
-    fetchMovies("https://wookie.codesubmit.io/movies").then((movies) =>
-      setMovies(movies)
-    );
+    fetchMovies("https://wookie.codesubmit.io/movies").then((movies) => {
+      setMovies(movies);
+      getMoviesCategories(movies);
+    });
   }, []);
   return (
     <>
-      <h1>Number of movies : {movies.length}</h1>
+      {categories.map((category, index) => {
+        return <h1 key={index}>{category}</h1>;
+      })}
     </>
   );
 };
