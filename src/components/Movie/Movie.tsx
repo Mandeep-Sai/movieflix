@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Spinner } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import StarRating from "../StarRating/StarRating";
 import { Movie as MovieType, MovieAndHomeProps } from "../types";
 import "./Movie.css";
 
@@ -38,7 +39,11 @@ const Movie = ({ data }: MovieAndHomeProps): JSX.Element => {
                 <h4>{movieData?.title}</h4>
                 <h4>({movieData?.imdb_rating}/10)</h4>
               </div>
-              <div className="rating">Stars</div>
+              <div className="rating">
+                {movieData?.imdb_rating && (
+                  <StarRating rating={movieData?.imdb_rating} />
+                )}
+              </div>
             </div>
 
             <p className="date">
@@ -47,7 +52,10 @@ const Movie = ({ data }: MovieAndHomeProps): JSX.Element => {
               | {movieData?.director} | {movieData?.length}
             </p>
             <p className="cast">Cast : {movieData?.cast.join(" , ")}</p>
-            <p>Description: {movieData?.overview}</p>
+            <p>
+              <b>Description: </b>
+              {movieData?.overview}
+            </p>
           </div>
         </div>
       )}
