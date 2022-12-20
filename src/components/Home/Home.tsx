@@ -1,14 +1,8 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
-import { Spinner } from "react-bootstrap";
 import Gallery from "../Gallery/Gallery";
-import { Movie } from "../types";
+import { MovieAndHomeProps, Movie } from "../types";
 
-interface HomeProps {
-  data: Movie[];
-}
-
-const Home = ({ data }: HomeProps): JSX.Element => {
+const Home = ({ data }: MovieAndHomeProps): JSX.Element => {
   const [categories, setCategories] = useState<string[]>([]);
 
   const getMoviesCategories = (movies: Movie[]) => {

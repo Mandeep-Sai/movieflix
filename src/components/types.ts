@@ -18,3 +18,7 @@ export interface GalleryProps {
   category: string;
   movies: Movie[];
 }
+
+export interface MovieAndHomeProps {
+  data: Movie[];
+}

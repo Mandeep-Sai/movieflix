@@ -1,9 +1,6 @@
-import { Movie as MovieType } from "../types";
+import { MovieAndHomeProps } from "../types";
 
-interface MovieProps {
-  data: MovieType[];
-}
-const Movie = ({ data }: MovieProps): JSX.Element => {
+const Movie = ({ data }: MovieAndHomeProps): JSX.Element => {
   return (
     <>
       <h1>{data.length}</h1>
