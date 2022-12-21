@@ -1,7 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import Home from "./Home";
 import { BrowserRouter } from "react-router-dom";
-import axios from "axios";
 import { getMoviesCategories } from "../utils";
 
 const moviesData = [

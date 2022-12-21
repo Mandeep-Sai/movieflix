@@ -4,6 +4,7 @@ import { ArrowLeft } from "react-bootstrap-icons";
 import { useNavigate, useParams } from "react-router-dom";
 import StarRating from "../StarRating/StarRating";
 import { Movie as MovieType, MovieAndHomeProps } from "../types";
+import { transformDateToYear } from "../utils";
 import "./Movie.css";
 
 const Movie = ({ data }: MovieAndHomeProps): JSX.Element => {
@@ -11,11 +12,6 @@ const Movie = ({ data }: MovieAndHomeProps): JSX.Element => {
   const [loading, setLoading] = useState<boolean>(false);
   const { id } = useParams();
   const navigate = useNavigate();
-
-  const transformDateToYear = (date: Date) => {
-    let d = new Date(date);
-    return d.getFullYear();
-  };
 
   useEffect(() => {
     setLoading(true);

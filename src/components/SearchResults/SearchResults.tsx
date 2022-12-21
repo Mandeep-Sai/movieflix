@@ -1,26 +1,15 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { Spinner } from "react-bootstrap";
 import { ArrowLeft } from "react-bootstrap-icons";
 import { useNavigate, useParams } from "react-router-dom";
 import { Movie } from "../types";
+import { fetchMovies } from "../utils";
 import "./SearchResults.css";
 const SearchResults = () => {
   const [loading, setLoading] = useState<boolean>(false);
   const [movies, setMovies] = useState<Movie[]>([]);
   const { query } = useParams();
   const navigate = useNavigate();
-
-  const fetchMovies = async (url: string): Promise<Movie[]> => {
-    return await axios
-      .get(url, {
-        headers: {
-          Authorization: "Bearer Wookie2021",
-        },
-      })
-      .then((response) => response.data.movies)
-      .catch((error) => console.log(`Error : ${error}`));
-  };
 
   useEffect(() => {
     setLoading(true);
