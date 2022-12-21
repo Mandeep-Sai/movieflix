@@ -1,41 +1,40 @@
 import { useEffect, useState } from "react";
 import Gallery from "../Gallery/Gallery";
-import { MovieAndHomeProps, Movie } from "../types";
+import { MovieAndHomeProps } from "../types";
+import { getMoviesCategories } from "../utils";
 
 const Home = ({ data }: MovieAndHomeProps): JSX.Element => {
   const [categories, setCategories] = useState<string[]>([]);
 
-  const getMoviesCategories = (movies: Movie[]) => {
-    let categories: string[] = [];
-    movies.forEach((m) => {
-      m.genres.forEach((genre) => {
-        if (!categories.includes(genre)) {
-          categories.push(genre);
-        }
-      });
-    });
-    setCategories(categories);
-  };
-
   useEffect(() => {
     if (data.length > 0) {
-      getMoviesCategories(data);
+      let categories = getMoviesCategories(data);
+      setCategories(categories);
     }
   }, [data]);
   return (
-    <>
+    <div data-testid="home">
       {data.length > 0 ? (
-        <>
+        <div data-testid="movies">
           {categories.map((category, index) => {
             return (
               <Gallery key={index} category={category} movies={data}></Gallery>
             );
           })}
-        </>
+        </div>
       ) : (
-        <h1>No Movies</h1>
+        <h2
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            marginTop: "10%",
+          }}
+          data-testid="no_movies"
+        >
+          No Movies
+        </h2>
       )}
-    </>
+    </div>
   );
 };
 

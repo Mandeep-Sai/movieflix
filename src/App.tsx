@@ -38,6 +38,7 @@ function App() {
       <Navigation></Navigation>
       {loading ? (
         <Spinner
+          data-testid="spinner"
           animation="border"
           variant="light"
           style={{ position: "absolute", top: "50%", left: "50%" }}
