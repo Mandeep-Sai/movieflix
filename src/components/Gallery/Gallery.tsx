@@ -27,7 +27,6 @@ const Gallery = ({ category, movies }: GalleryProps): JSX.Element => {
       items: 6,
     },
     largeDesktop: {
-      // the naming can be any, depends on you.
       breakpoint: { max: 1500, min: 1300 },
       items: 5,
     },
