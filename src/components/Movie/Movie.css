@@ -19,3 +19,9 @@
 .title_container .title > *{
     margin-right: 10px;
 }
+
+.back_button{
+    margin: 10px 100px 0px 100px;
+    font-size: 40px;
+    cursor: pointer;
+}
