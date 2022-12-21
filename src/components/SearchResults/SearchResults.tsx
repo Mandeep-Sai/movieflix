@@ -18,9 +18,9 @@ const SearchResults = () => {
         if (movies) {
           setMovies(movies);
         }
-        setLoading(false);
       }
     );
+    setLoading(false);
   }, [query]);
   return (
     <>
@@ -35,7 +35,7 @@ const SearchResults = () => {
           <div className="back_button" onClick={() => navigate(-1)}>
             <ArrowLeft />
           </div>
-          <div className="results">
+          <div className="results" data-testid="results">
             <h4> Search Results for "{query}"</h4>
             {movies.length > 0 ? (
               <div className="movies">
@@ -55,6 +55,7 @@ const SearchResults = () => {
                   justifyContent: "center",
                   marginTop: "10%",
                 }}
+                data-testid="no_movies"
               >
                 No Movies found
               </h2>
